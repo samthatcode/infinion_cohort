@@ -1,23 +1,31 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import AllCampaign from '/src/views/AllCampaign.vue';
+import EditCampaign from '/src/views/EditCampaign.vue';
+import ViewCampaign from '@/views/ViewCampaign.vue';
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
+const routes = [
     {
-      path: '/',
-      name: 'home',
-      component: HomeView
+        path: '/',
+        name: 'AllCampaigns',
+        component: AllCampaign,
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+        path: '/edit-campaign/:id',
+        name: 'EditCampaign',
+        component: EditCampaign,
+        props: true
+    },
+    {
+        path: '/view-campaign/:id',
+        name: 'ViewCampaign',
+        component: ViewCampaign,
+        props: true
     }
-  ]
-})
+];
 
-export default router
+const router = createRouter({
+    history: createWebHistory(),
+    routes,
+});
+
+export default router;
